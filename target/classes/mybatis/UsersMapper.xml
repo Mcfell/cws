@@ -2,210 +2,189 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ckc.cws.mapper.UsersMapper" >
   <resultMap id="BaseResultMap" type="com.ckc.cws.bean.Users" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <id column="U_ID" property="uId" jdbcType="INTEGER" />
+    <result column="U_NAME" property="uName" jdbcType="VARCHAR" />
+    <result column="PWD" property="pwd" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="PIC" property="pic" jdbcType="VARCHAR" />
+    <result column="WEIXIN_ID" property="weixinId" jdbcType="VARCHAR" />
+    <result column="WEIBO_ID" property="weiboId" jdbcType="VARCHAR" />
+    <result column="ZHIFUBAO_ID" property="zhifubaoId" jdbcType="VARCHAR" />
+    <result column="CAR_ID" property="carId" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="TINYINT" />
+    <result column="REG_TIME" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="LASTLOGIN_TIME" property="lastloginTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List" >
-    id, nickname, password, email, phone
+	U_ID, U_NAME, PWD, PHONE, CITY, PIC, WEIXIN_ID, WEIBO_ID, ZHIFUBAO_ID, CAR_ID, LEVEL,REG_TIME, LASTLOGIN_TIME 
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ckc.cws.bean.UsersExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from users
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from users
-    where id = #{id,jdbcType=INTEGER}
+    where U_ID = #{uId}
+  </select>
+  <select id="selectByPhone" resultType="int" parameterType="java.lang.String" >
+    select count(*) from users where phone = #{phone,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from users
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.ckc.cws.bean.UsersExample" >
-    delete from users
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
+    where U_ID = #{uId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ckc.cws.bean.Users" >
-    insert into users (id, nickname, password, 
-      email, phone)
-    values (#{id,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+    insert into users (U_ID, U_NAME, PWD, 
+      PHONE, CITY, PIC, WEIXIN_ID, 
+      WEIBO_ID, ZHIFUBAO_ID, CAR_ID, 
+      LEVEL, REG_TIME, LASTLOGIN_TIME
+      )
+    values (#{uId,jdbcType=INTEGER}, #{uName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{weixinId,jdbcType=VARCHAR}, 
+      #{weiboId,jdbcType=VARCHAR}, #{zhifubaoId,jdbcType=VARCHAR}, #{carId,jdbcType=VARCHAR}, 
+      #{level,jdbcType=TINYINT}, #{regTime,jdbcType=TIMESTAMP}, #{lastloginTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ckc.cws.bean.Users" >
     insert into users
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="uId != null" >
+        U_ID,
       </if>
-      <if test="nickname != null" >
-        nickname,
+      <if test="uName != null" >
+        U_NAME,
       </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="email != null" >
-        email,
+      <if test="pwd != null" >
+        PWD,
       </if>
       <if test="phone != null" >
-        phone,
+        PHONE,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="pic != null" >
+        PIC,
+      </if>
+      <if test="weixinId != null" >
+        WEIXIN_ID,
+      </if>
+      <if test="weiboId != null" >
+        WEIBO_ID,
+      </if>
+      <if test="zhifubaoId != null" >
+        ZHIFUBAO_ID,
+      </if>
+      <if test="carId != null" >
+        CAR_ID,
+      </if>
+      <if test="level != null" >
+        LEVEL,
+      </if>
+      <if test="regTime != null" >
+        REG_TIME,
+      </if>
+      <if test="lastloginTime != null" >
+        LASTLOGIN_TIME,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
       </if>
-      <if test="nickname != null" >
-        #{nickname,jdbcType=VARCHAR},
+      <if test="uName != null" >
+        #{uName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
       </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinId != null" >
+        #{weixinId,jdbcType=VARCHAR},
+      </if>
+      <if test="weiboId != null" >
+        #{weiboId,jdbcType=VARCHAR},
+      </if>
+      <if test="zhifubaoId != null" >
+        #{zhifubaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="carId != null" >
+        #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginTime != null" >
+        #{lastloginTime,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ckc.cws.bean.UsersExample" resultType="java.lang.Integer" >
-    select count(*) from users
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update users
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.nickname != null" >
-        nickname = #{record.nickname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.email != null" >
-        email = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.phone != null" >
-        phone = #{record.phone,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update users
-    set id = #{record.id,jdbcType=INTEGER},
-      nickname = #{record.nickname,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.ckc.cws.bean.Users" >
     update users
     <set >
-      <if test="nickname != null" >
-        nickname = #{nickname,jdbcType=VARCHAR},
+      <if test="uName != null" >
+        U_NAME = #{uName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
+      <if test="pwd != null" >
+        PWD = #{pwd,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
-        phone = #{phone,jdbcType=VARCHAR},
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        PIC = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinId != null" >
+        WEIXIN_ID = #{weixinId,jdbcType=VARCHAR},
+      </if>
+      <if test="weiboId != null" >
+        WEIBO_ID = #{weiboId,jdbcType=VARCHAR},
+      </if>
+      <if test="zhifubaoId != null" >
+        ZHIFUBAO_ID = #{zhifubaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="carId != null" >
+        CAR_ID = #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        LEVEL = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="regTime != null" >
+        REG_TIME = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginTime != null" >
+        LASTLOGIN_TIME = #{lastloginTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where U_ID = #{uId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ckc.cws.bean.Users" >
     update users
-    set nickname = #{nickname,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    set U_NAME = #{uName,jdbcType=VARCHAR},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      PIC = #{pic,jdbcType=VARCHAR},
+      WEIXIN_ID = #{weixinId,jdbcType=VARCHAR},
+      WEIBO_ID = #{weiboId,jdbcType=VARCHAR},
+      ZHIFUBAO_ID = #{zhifubaoId,jdbcType=VARCHAR},
+      CAR_ID = #{carId,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=TINYINT},
+      REG_TIME = #{regTime,jdbcType=TIMESTAMP},
+      LASTLOGIN_TIME = #{lastloginTime,jdbcType=TIMESTAMP}
+    where U_ID = #{uId,jdbcType=INTEGER}
   </update>
 </mapper>

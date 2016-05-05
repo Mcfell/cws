@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ckc.cws.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.ckc.cws.bean.Orders" >
+    <id column="O_ID" property="oId" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="TOTAL_DAY_TIME" property="totalDayTime" jdbcType="INTEGER" />
+    <result column="TOTAL_NIGHT_TIME" property="totalNightTime" jdbcType="INTEGER" />
+    <result column="TOTAL_COST" property="totalCost" jdbcType="DOUBLE" />
+    <result column="DISCOUNT" property="discount" jdbcType="REAL" />
+    <result column="STAT" property="stat" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    O_ID, START_TIME, END_TIME, TOTAL_DAY_TIME, TOTAL_NIGHT_TIME, TOTAL_COST, DISCOUNT, 
+    STAT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where O_ID = #{oId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from orders
+    where O_ID = #{oId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ckc.cws.bean.Orders" >
+    insert into orders (O_ID, START_TIME, END_TIME, 
+      TOTAL_DAY_TIME, TOTAL_NIGHT_TIME, TOTAL_COST, 
+      DISCOUNT, STAT)
+    values (#{oId,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{totalDayTime,jdbcType=INTEGER}, #{totalNightTime,jdbcType=INTEGER}, #{totalCost,jdbcType=DOUBLE}, 
+      #{discount,jdbcType=REAL}, #{stat,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ckc.cws.bean.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oId != null" >
+        O_ID,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="totalDayTime != null" >
+        TOTAL_DAY_TIME,
+      </if>
+      <if test="totalNightTime != null" >
+        TOTAL_NIGHT_TIME,
+      </if>
+      <if test="totalCost != null" >
+        TOTAL_COST,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="stat != null" >
+        STAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oId != null" >
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalDayTime != null" >
+        #{totalDayTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalNightTime != null" >
+        #{totalNightTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalCost != null" >
+        #{totalCost,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=REAL},
+      </if>
+      <if test="stat != null" >
+        #{stat,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ckc.cws.bean.Orders" >
+    update orders
+    <set >
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalDayTime != null" >
+        TOTAL_DAY_TIME = #{totalDayTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalNightTime != null" >
+        TOTAL_NIGHT_TIME = #{totalNightTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalCost != null" >
+        TOTAL_COST = #{totalCost,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null" >
+        DISCOUNT = #{discount,jdbcType=REAL},
+      </if>
+      <if test="stat != null" >
+        STAT = #{stat,jdbcType=TINYINT},
+      </if>
+    </set>
+    where O_ID = #{oId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ckc.cws.bean.Orders" >
+    update orders
+    set START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      TOTAL_DAY_TIME = #{totalDayTime,jdbcType=INTEGER},
+      TOTAL_NIGHT_TIME = #{totalNightTime,jdbcType=INTEGER},
+      TOTAL_COST = #{totalCost,jdbcType=DOUBLE},
+      DISCOUNT = #{discount,jdbcType=REAL},
+      STAT = #{stat,jdbcType=TINYINT}
+    where O_ID = #{oId,jdbcType=VARCHAR}
+  </update>
+</mapper>

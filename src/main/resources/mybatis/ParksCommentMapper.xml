@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ckc.cws.mapper.ParksCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.ckc.cws.bean.ParksComment" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="P_ID" property="pId" jdbcType="INTEGER" />
+    <result column="U_ID" property="uId" jdbcType="INTEGER" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="STAR" property="star" jdbcType="TINYINT" />
+    <result column="TIME" property="time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, P_ID, U_ID, CONTENT, STAR, TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from parks_comment
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from parks_comment
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ckc.cws.bean.ParksComment" >
+    insert into parks_comment (ID, P_ID, U_ID, 
+      CONTENT, STAR, TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{star,jdbcType=TINYINT}, #{time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ckc.cws.bean.ParksComment" >
+    insert into parks_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="pId != null" >
+        P_ID,
+      </if>
+      <if test="uId != null" >
+        U_ID,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="star != null" >
+        STAR,
+      </if>
+      <if test="time != null" >
+        TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=TINYINT},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ckc.cws.bean.ParksComment" >
+    update parks_comment
+    <set >
+      <if test="pId != null" >
+        P_ID = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        U_ID = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        STAR = #{star,jdbcType=TINYINT},
+      </if>
+      <if test="time != null" >
+        TIME = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ckc.cws.bean.ParksComment" >
+    update parks_comment
+    set P_ID = #{pId,jdbcType=INTEGER},
+      U_ID = #{uId,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      STAR = #{star,jdbcType=TINYINT},
+      TIME = #{time,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

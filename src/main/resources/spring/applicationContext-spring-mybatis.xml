@@ -65,7 +65,14 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"  value="classpath:mybatis/*Mapper.xml" />
 		<property name="typeAliasesPackage" value="com.ckc.cws.bean" />  
-			<!--  <property name="configLocation" value="classpath:mybatis-config.xml"></property>-->
+		<!--  
+		//typeHandlers它指定了一系列的类型处理器类的完全限定名的类名列表，用逗号隔开。
+		<property name="typeHandlers" value="com.mybatis3.typehandlers.PhoneTypeHandler" />  
+		//typeHandlersPackage: 它指定了一系列包名列表，用逗号隔开，包内含有需要被注册的类型处理器类。
+	    <property name="typeHandlersPackage" value="com.mybatis3.typehandlers" />  
+	    //它指定了MyBatisSqlSessionFactory配置文件所在的位置。
+	    <property name="configLocation" value="WEB-INF/mybatisconfig.xml" /> 
+      -->
 	</bean>
 	<!-- mapper接口所在包名，Spring会自动查找其下的类 --> 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
