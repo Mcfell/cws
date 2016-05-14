@@ -34,7 +34,7 @@
 		enableUpdateByExample="false" enableDeleteByExample="false"
 		enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
-		<table tableName="orders" enableCountByExample="false"
+		<!-- <table tableName="orders" enableCountByExample="false"
 		enableUpdateByExample="false" enableDeleteByExample="false"
 		enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
@@ -49,7 +49,7 @@
 		<table tableName="orders_associated" enableCountByExample="false"
 		enableUpdateByExample="false" enableDeleteByExample="false"
 		enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
+		</table> -->
         <!-- <table schema="user" tableName="users" ></table>
         <table schema="user" tableName="locks"></table>
         <table schema="user" tableName="orders"></table>

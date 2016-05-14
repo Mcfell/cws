@@ -10,6 +10,8 @@ public interface IUsers {
     int deleteByPrimaryKey(Integer uId);
 
     Message<Integer, List<String>> insert(Users record);
+    
+    Message<Integer, List<String>> selectByPhoneAndPwd(Users record);
 
     int insertSelective(Users record);
 

@@ -19,6 +19,11 @@
   <sql id="Base_Column_List" >
 	U_ID, U_NAME, PWD, PHONE, CITY, PIC, WEIXIN_ID, WEIBO_ID, ZHIFUBAO_ID, CAR_ID, LEVEL,REG_TIME, LASTLOGIN_TIME 
   </sql>
+  
+  <sql id="Base_Column_List_WithOutPwd" >
+	U_ID, U_NAME, PHONE, CITY, PIC, WEIXIN_ID, WEIBO_ID, ZHIFUBAO_ID, CAR_ID, LEVEL,REG_TIME, LASTLOGIN_TIME 
+  </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -26,7 +31,10 @@
     where U_ID = #{uId}
   </select>
   <select id="selectByPhone" resultType="int" parameterType="java.lang.String" >
-    select count(*) from users where phone = #{phone,jdbcType=VARCHAR}
+    select count(*) from users where PHONE = #{phone,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPhoneAndPwd" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select <include refid="Base_Column_List_WithOutPwd" /> from users where PHONE = #{phone,jdbcType=VARCHAR} and PWD = #{pwd}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from users
