@@ -40,7 +40,7 @@
 		enableUpdateByExample="false" enableDeleteByExample="false"
 		enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
-		<!-- <table tableName="orders" enableCountByExample="false"
+		<table tableName="orders" enableCountByExample="false"
 		enableUpdateByExample="false" enableDeleteByExample="false"
 		enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>

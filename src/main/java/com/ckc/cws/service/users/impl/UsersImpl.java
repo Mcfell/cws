@@ -19,7 +19,6 @@ import com.ckc.cws.mapper.UsersMapper;
 import com.ckc.cws.service.users.IUsers;
 import com.ckc.cws.util.DataUtil;
 
-@Service(value="userDao")
 @Service(value="userService")
 public class UsersImpl implements IUsers {
 
@@ -27,12 +26,6 @@ public class UsersImpl implements IUsers {
 	UsersMapper usersMapper;
 	
 	private static final Logger log = LoggerFactory.getLogger(UsersImpl.class);
-	@Override
-	public int deleteByPrimaryKey(Integer uId) {
-		return usersMapper.deleteByPrimaryKey(uId);
-	}
-
-	
 	public int validation(String value,int type){
 		if(value==null||value.trim().equals(""))
 			return FinalValue.NULL_PARAMETERS;
@@ -99,29 +92,10 @@ public class UsersImpl implements IUsers {
 		}
 		return message;
 	}
-
-	public int insertSelective(Users record) {
-		return usersMapper.insertSelective(record);
-	}
-
-	public Users selectByPrimaryKey(Integer uId) {
-		// TODO Auto-generated method stub
-		return usersMapper.selectByPrimaryKey(uId);
-	}
-
-	public int updateByPrimaryKeySelective(Users record) {
-		return usersMapper.updateByPrimaryKeySelective(record);
-	}
-
-	public int updateByPrimaryKey(Users record) {
-		return usersMapper.updateByPrimaryKey(record);
-	}
-
 	/*
 	 * 通过手机密码登录
 	 * @see com.ckc.cws.service.users.IUsers#selectByPhoneAndPwd(com.ckc.cws.bean.Users)
 	 */
-	@Override
 	public Message<Integer, List<String>> selectByPhoneAndPwd(Users record) {
 		Message<Integer,List<String>> message = new Message<Integer,List<String>>();
 		List<String> list = new ArrayList<String>();
@@ -152,6 +126,28 @@ public class UsersImpl implements IUsers {
 			message.setContenT(list);
 			return message;
 		}
+	}
+
+
+	public int insertSelective(Users record) {
+		return usersMapper.insertSelective(record);
+	}
+
+	public Users selectByPrimaryKey(Integer uId) {
+		// TODO Auto-generated method stub
+		return usersMapper.selectByPrimaryKey(uId);
+	}
+
+	public int updateByPrimaryKeySelective(Users record) {
+		return usersMapper.updateByPrimaryKeySelective(record);
+	}
+
+	public int updateByPrimaryKey(Users record) {
+		return usersMapper.updateByPrimaryKey(record);
+	}
+
+	public int deleteByPrimaryKey(Integer uId) {
+		return 0;
 	}
 
 }

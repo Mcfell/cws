@@ -30,8 +30,6 @@ public class userController {
 	 * 用户登录
 	 */
 	@RequestMapping(value="ajaxUserLogin",method=RequestMethod.POST)
-	public @ResponseBody Users selectByUserPhoneAndPwd(Users user){
-		return userDao.selectByPrimaryKey();
 	public @ResponseBody Message<Integer, List<String>> selectAllUser(Users user){
 		return userService.selectByPhoneAndPwd(user);
 	}

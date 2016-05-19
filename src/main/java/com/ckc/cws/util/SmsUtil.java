@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.cloopen.rest.sdk.CCPRestSmsSDK;
 
-public class SDKSendSMS{
+public class SmsUtil{
 
 	/**
 	 * @param args
@@ -71,3 +71,4 @@ public class SDKSendSMS{
 		}
 	}
 }
+

@@ -16,27 +16,25 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`cws` /*!40100 DEFAULT CHARACTER SET utf
 
 USE `cws`;
 
-/*Table structure for table `lock
-s` */
+/*Table structure for table `carlocks` */
 
-DROP TABLE IF EXISTS `lock
-s`;
+DROP TABLE IF EXISTS `carlocks`;
 
-CREATE TABLE `lock
-s` (
+CREATE TABLE `carlocks` (
   `S_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `U_ID` int(10) unsigned DEFAULT NULL,
   `P_ID` int(10) unsigned DEFAULT NULL,
-  `IS_RENT` tinyint(1) DEFAULT '1',
+  `IS_RENT` tinyint(1) DEFAULT NULL,
   `USE_STAT` tinyint(1) DEFAULT NULL,
   `FAULT_STAT` tinyint(4) DEFAULT NULL,
   `BLUE_ID` varchar(64) DEFAULT NULL,
   `BULE_PWD` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`S_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-/*Data for the table `lock
-s` */
+/*Data for the table `carlocks` */
+
+insert  into `carlocks`(`S_ID`,`U_ID`,`P_ID`,`IS_RENT`,`USE_STAT`,`FAULT_STAT`,`BLUE_ID`,`BULE_PWD`) values (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,1,2,1,1,1,'1','1');
 
 /*Table structure for table `orders` */
 
@@ -88,9 +86,11 @@ CREATE TABLE `parks` (
   `DAY_PRICE` float DEFAULT NULL COMMENT '日价格',
   `NIGHT_PRICE` float DEFAULT NULL COMMENT '夜价格',
   PRIMARY KEY (`P_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=123126 DEFAULT CHARSET=utf8;
 
 /*Data for the table `parks` */
+
+insert  into `parks`(`P_ID`,`P_NAME`,`LNG`,`LAT`,`PIC`,`CITY`,`AREA`,`DAY_PRICE`,`NIGHT_PRICE`) values (1,'test',132.1,15.3,'','china','test',1.1,2.2),(2,'test',132.1,15.3,'ttt','china','test',1.1,2.2),(3,'test',132.1,15.3,'ttt','china','test',1.1,2.2),(123124,'test2',132.1,15.3,'ttt','china','test',1.1,2.2),(123125,'test2',132.1,15.3,'ttt','china','test',1.1,2.2);
 
 /*Table structure for table `parks_comment` */
 
