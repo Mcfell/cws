@@ -20,7 +20,7 @@ public class mainController {
 	
 	
 	/**
-	 * @RequestHeader °ó¶¨ HttpServletRequest Í·ĞÅÏ¢µ½ Controller ·½·¨²ÎÊı
+	 * @RequestHeader ç»‘å®š HttpServletRequest å¤´ä¿¡æ¯åˆ° Controller æ–¹æ³•å‚æ•°
 	 */
 	@RequestMapping("testRequestHeader")
     public String testRequestHeader(@RequestHeader("Host") String hostAddr,
@@ -29,15 +29,15 @@ public class mainController {
       return "requestHeader";
     }
 	/**
-	 * @CookieValue °ó¶¨ cookie µÄÖµµ½ Controller ·½·¨²ÎÊı
+	 * @CookieValue ç»‘å®š cookie çš„å€¼åˆ° Controller æ–¹æ³•å‚æ•°
 	 */
 	@RequestMapping("/testCookie")  
     public String testCookieValue(@CookieValue("hello")String cookieOne, 
-    		@CookieValue String cookieTwo) {  //ºóÒ»¸öÈ¡ cookie ÖĞµÄÃüÃûÎª cookieTwo µÄ cookie Öµ
+    		@CookieValue String cookieTwo) {  //åä¸€ä¸ªå– cookie ä¸­çš„å‘½åä¸º cookieTwo çš„ cookie å€¼
       return "cookieValue" ;  
     }
 	/**
-	 * @RequestParam ÓÃÀ´±ê×¢ÇëÇó´¦Àí·½·¨µÄ²ÎÊıºÍURIÖĞ²ÎÊıµÄ¶ÔÓ¦
+	 * @RequestParam ç”¨æ¥æ ‡æ³¨è¯·æ±‚å¤„ç†æ–¹æ³•çš„å‚æ•°å’ŒURIä¸­å‚æ•°çš„å¯¹åº”
 	 * @RequestMapping(value="testParams" , params={ "param1=value1" , "param2" , "!param3" })
 	 * @RequestMapping (value= "testMethod" , method={RequestMethod.GET , RequestMethod.DELETE })
 	 */
@@ -47,10 +47,10 @@ public class mainController {
 	}
 
 	/**
-	 * @ModelAttribute ºÍ @SessionAttributes ´«µİºÍ±£´æÊı¾İ
-	 * SpringMVC Ö§³ÖÊ¹ÓÃ @ModelAttribute ºÍ @SessionAttributes ÔÚ²»Í¬µÄÄ£ĞÍºÍ¿ØÖÆÆ÷Ö®¼ä¹²ÏíÊı¾İ¡£
-	 * @ModelAttributeÉùÃ÷±ê×¢ÔÚController²ÎÊıÉÏ£¬±íÊ¾¸Ã²ÎÊıµÄ value À´Ô´ÓÚ model Àï"queryBean"£¬²¢±»±£´æµ½ model Àï
-	 *  ÉùÃ÷ÔÚ·½·¨ÉÏ£¬±íÊ¾¸Ã·½·¨µÄ·µ»ØÖµ±»±£´æµ½modelÀï¡£¸Ã·½·¨½«ÔÚ´¦ÀíÆ÷·½·¨Ö´ĞĞÖ®Ç°Ö´ĞĞ£¬È»ºó°Ñ·µ»ØµÄ¶ÔÏó´æ·ÅÔÚ session »òÄ£ĞÍÊôĞÔÖĞ£¬
+	 * @ModelAttribute å’Œ @SessionAttributes ä¼ é€’å’Œä¿å­˜æ•°æ®
+	 * SpringMVC æ”¯æŒä½¿ç”¨ @ModelAttribute å’Œ @SessionAttributes åœ¨ä¸åŒçš„æ¨¡å‹å’Œæ§åˆ¶å™¨ä¹‹é—´å…±äº«æ•°æ®ã€‚
+	 * @ModelAttributeå£°æ˜æ ‡æ³¨åœ¨Controllerå‚æ•°ä¸Šï¼Œè¡¨ç¤ºè¯¥å‚æ•°çš„ value æ¥æºäº model é‡Œ"queryBean"ï¼Œå¹¶è¢«ä¿å­˜åˆ° model é‡Œ
+	 *  å£°æ˜åœ¨æ–¹æ³•ä¸Šï¼Œè¡¨ç¤ºè¯¥æ–¹æ³•çš„è¿”å›å€¼è¢«ä¿å­˜åˆ°modelé‡Œã€‚è¯¥æ–¹æ³•å°†åœ¨å¤„ç†å™¨æ–¹æ³•æ‰§è¡Œä¹‹å‰æ‰§è¡Œï¼Œç„¶åæŠŠè¿”å›çš„å¯¹è±¡å­˜æ”¾åœ¨ session æˆ–æ¨¡å‹å±æ€§ä¸­ï¼Œ
 	 */
 	public String handleInit(@ModelAttribute("queryBean") Users sUser,Model model) {
 		return null;
