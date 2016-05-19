@@ -10,6 +10,7 @@
   <properties>
         <!-- spring版本号 -->
         <spring.version>4.0.2.RELEASE</spring.version>
+        <memcached.version>2.0.0</memcached.version>
   </properties>
   <dependencies>
   <!-- spring核心包 -->
@@ -145,11 +146,19 @@
             <artifactId>commons-codec</artifactId>  
             <version>1.9</version>  
         </dependency>
+        <!-- memcached -->
+        
+        <dependency> 
+	        <groupId>com.googlecode.xmemcached</groupId> 
+	        <artifactId>xmemcached</artifactId> 
+	        <version>${memcached.version}</version> 
+        </dependency>
+        
   </dependencies>
   <build>
     <finalName>cws</finalName>
     <plugins>
-        <plugin>
+       <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.0</version>
@@ -157,8 +166,8 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
-            </plugin>
-	     <plugin>  
+          </plugin> -->
+	     <!-- <plugin>  
                 <groupId>org.mybatis.generator</groupId>  
                 <artifactId>mybatis-generator-maven-plugin</artifactId>  
                 <version>1.3.2</version>  
@@ -173,10 +182,10 @@
                 <configuration>  
                     <verbose>true</verbose>  
                     <overwrite>true</overwrite>  
-                    <!-- <jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver> -->  
-                    <!-- <jdbcURL>jdbc:mysql://127.0.0.1:3306/test</jdbcURL> -->  
-                    <!-- <jdbcUserId>test</jdbcUserId> -->  
-                    <!-- <jdbcPassword>test</jdbcPassword> -->  
+                    <jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>  
+                    <jdbcURL>jdbc:mysql://127.0.0.1:3306/test</jdbcURL>  
+                    <jdbcUserId>test</jdbcUserId>  
+                    <jdbcPassword>test</jdbcPassword>  
                 </configuration>  
                 <dependencies>  
                     <dependency>  
@@ -194,8 +203,13 @@
                         <artifactId>mybatis</artifactId>  
                         <version>3.3.0</version>  
                     </dependency>  
+                     <dependency>
+			            <groupId>log4j</groupId>
+			            <artifactId>log4j</artifactId>
+			            <version>1.2.16</version>
+			        </dependency>
                 </dependencies>  
-            </plugin>
+            </plugin> -->
     </plugins>
   </build>
 </project>

@@ -23,9 +23,7 @@ public class UsersImpl implements IUsers {
 	@Resource
 	UsersMapper usersMapper;
 	
-	@Override
 	public int deleteByPrimaryKey(Integer uId) {
-		
 		return usersMapper.deleteByPrimaryKey(uId);
 	}
 
@@ -50,10 +48,10 @@ public class UsersImpl implements IUsers {
 		}
 		return FinalValue.SUCCESS;
 	}
+	
 	/*
 	 *通过手机注册 
 	 */
-	@Override
 	public Message<Integer, List<String>> insert(Users record) {
 		Message<Integer,List<String>> message = new Message<Integer,List<String>>();
 		List<String> list = new ArrayList<String>();
@@ -91,26 +89,21 @@ public class UsersImpl implements IUsers {
 			message.setStatue(FinalValue.FAILED);
 		}
 		return message;
-			
 	}
 
-	@Override
 	public int insertSelective(Users record) {
 		return usersMapper.insertSelective(record);
 	}
 
-	@Override
 	public Users selectByPrimaryKey(Integer uId) {
 		// TODO Auto-generated method stub
 		return usersMapper.selectByPrimaryKey(uId);
 	}
 
-	@Override
 	public int updateByPrimaryKeySelective(Users record) {
 		return usersMapper.updateByPrimaryKeySelective(record);
 	}
 
-	@Override
 	public int updateByPrimaryKey(Users record) {
 		return usersMapper.updateByPrimaryKey(record);
 	}

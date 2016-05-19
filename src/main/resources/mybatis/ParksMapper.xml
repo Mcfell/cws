@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ckc.cws.mapper.ParksMapper" >
+  <resultMap id="BaseResultMap" type="com.ckc.cws.bean.Parks" >
+    <id column="P_ID" property="pId" jdbcType="INTEGER" />
+    <result column="P_NAME" property="pName" jdbcType="VARCHAR" />
+    <result column="LNG" property="lng" jdbcType="DOUBLE" />
+    <result column="LAT" property="lat" jdbcType="DOUBLE" />
+    <result column="PIC" property="pic" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="DAY_PRICE" property="dayPrice" jdbcType="REAL" />
+    <result column="NIGHT_PRICE" property="nightPrice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    P_ID, P_NAME, LNG, LAT, PIC, CITY, AREA, DAY_PRICE, NIGHT_PRICE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from parks
+    where P_ID = #{pId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from parks
+    where P_ID = #{pId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ckc.cws.bean.Parks" >
+    insert into parks (P_ID, P_NAME, LNG, 
+      LAT, PIC, CITY, AREA, 
+      DAY_PRICE, NIGHT_PRICE)
+    values (#{pId,jdbcType=INTEGER}, #{pName,jdbcType=VARCHAR}, #{lng,jdbcType=DOUBLE}, 
+      #{lat,jdbcType=DOUBLE}, #{pic,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{dayPrice,jdbcType=REAL}, #{nightPrice,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ckc.cws.bean.Parks" >
+    insert into parks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        P_ID,
+      </if>
+      <if test="pName != null" >
+        P_NAME,
+      </if>
+      <if test="lng != null" >
+        LNG,
+      </if>
+      <if test="lat != null" >
+        LAT,
+      </if>
+      <if test="pic != null" >
+        PIC,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="area != null" >
+        AREA,
+      </if>
+      <if test="dayPrice != null" >
+        DAY_PRICE,
+      </if>
+      <if test="nightPrice != null" >
+        NIGHT_PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pName != null" >
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="dayPrice != null" >
+        #{dayPrice,jdbcType=REAL},
+      </if>
+      <if test="nightPrice != null" >
+        #{nightPrice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ckc.cws.bean.Parks" >
+    update parks
+    <set >
+      <if test="pName != null" >
+        P_NAME = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        LNG = #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        LAT = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="pic != null" >
+        PIC = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="dayPrice != null" >
+        DAY_PRICE = #{dayPrice,jdbcType=REAL},
+      </if>
+      <if test="nightPrice != null" >
+        NIGHT_PRICE = #{nightPrice,jdbcType=REAL},
+      </if>
+    </set>
+    where P_ID = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ckc.cws.bean.Parks" >
+    update parks
+    set P_NAME = #{pName,jdbcType=VARCHAR},
+      LNG = #{lng,jdbcType=DOUBLE},
+      LAT = #{lat,jdbcType=DOUBLE},
+      PIC = #{pic,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      DAY_PRICE = #{dayPrice,jdbcType=REAL},
+      NIGHT_PRICE = #{nightPrice,jdbcType=REAL}
+    where P_ID = #{pId,jdbcType=INTEGER}
+  </update>
+</mapper>

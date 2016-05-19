@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ckc.cws.mapper.CarlocksMapper" >
+  <resultMap id="BaseResultMap" type="com.ckc.cws.bean.Carlocks" >
+    <id column="S_ID" property="sId" jdbcType="INTEGER" />
+    <result column="U_ID" property="uId" jdbcType="INTEGER" />
+    <result column="P_ID" property="pId" jdbcType="INTEGER" />
+    <result column="IS_RENT" property="isRent" jdbcType="BIT" />
+    <result column="USE_STAT" property="useStat" jdbcType="BIT" />
+    <result column="FAULT_STAT" property="faultStat" jdbcType="TINYINT" />
+    <result column="BLUE_ID" property="blueId" jdbcType="VARCHAR" />
+    <result column="BULE_PWD" property="bulePwd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    S_ID, U_ID, P_ID, IS_RENT, USE_STAT, FAULT_STAT, BLUE_ID, BULE_PWD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from carlocks
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from carlocks
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ckc.cws.bean.Carlocks" >
+    insert into carlocks (S_ID, U_ID, P_ID, 
+      IS_RENT, USE_STAT, FAULT_STAT, 
+      BLUE_ID, BULE_PWD)
+    values (#{sId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, 
+      #{isRent,jdbcType=BIT}, #{useStat,jdbcType=BIT}, #{faultStat,jdbcType=TINYINT}, 
+      #{blueId,jdbcType=VARCHAR}, #{bulePwd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ckc.cws.bean.Carlocks" >
+    insert into carlocks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        S_ID,
+      </if>
+      <if test="uId != null" >
+        U_ID,
+      </if>
+      <if test="pId != null" >
+        P_ID,
+      </if>
+      <if test="isRent != null" >
+        IS_RENT,
+      </if>
+      <if test="useStat != null" >
+        USE_STAT,
+      </if>
+      <if test="faultStat != null" >
+        FAULT_STAT,
+      </if>
+      <if test="blueId != null" >
+        BLUE_ID,
+      </if>
+      <if test="bulePwd != null" >
+        BULE_PWD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="isRent != null" >
+        #{isRent,jdbcType=BIT},
+      </if>
+      <if test="useStat != null" >
+        #{useStat,jdbcType=BIT},
+      </if>
+      <if test="faultStat != null" >
+        #{faultStat,jdbcType=TINYINT},
+      </if>
+      <if test="blueId != null" >
+        #{blueId,jdbcType=VARCHAR},
+      </if>
+      <if test="bulePwd != null" >
+        #{bulePwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ckc.cws.bean.Carlocks" >
+    update carlocks
+    <set >
+      <if test="uId != null" >
+        U_ID = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        P_ID = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="isRent != null" >
+        IS_RENT = #{isRent,jdbcType=BIT},
+      </if>
+      <if test="useStat != null" >
+        USE_STAT = #{useStat,jdbcType=BIT},
+      </if>
+      <if test="faultStat != null" >
+        FAULT_STAT = #{faultStat,jdbcType=TINYINT},
+      </if>
+      <if test="blueId != null" >
+        BLUE_ID = #{blueId,jdbcType=VARCHAR},
+      </if>
+      <if test="bulePwd != null" >
+        BULE_PWD = #{bulePwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ckc.cws.bean.Carlocks" >
+    update carlocks
+    set U_ID = #{uId,jdbcType=INTEGER},
+      P_ID = #{pId,jdbcType=INTEGER},
+      IS_RENT = #{isRent,jdbcType=BIT},
+      USE_STAT = #{useStat,jdbcType=BIT},
+      FAULT_STAT = #{faultStat,jdbcType=TINYINT},
+      BLUE_ID = #{blueId,jdbcType=VARCHAR},
+      BULE_PWD = #{bulePwd,jdbcType=VARCHAR}
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>

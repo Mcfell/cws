@@ -32,9 +32,7 @@ public class userController {
 	}
 	
 	@RequestMapping(value="ajaxUserLogin",method=RequestMethod.POST)
-	public @ResponseBody Users selectAllUser(){
-		
-		
-		return userDao.selectByPrimaryKey(2);
+	public @ResponseBody Users selectByUserPhoneAndPwd(Users user){
+		return userDao.selectByPrimaryKey();
 	}
 }

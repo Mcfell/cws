@@ -12,11 +12,16 @@ import com.ckc.cws.entity.User;
 import com.ckc.cws.entity.UserListForm;
 import com.ckc.cws.entity.UserMapForm;
 import com.ckc.cws.entity.UserSetForm;
+import com.ckc.cws.entity.locksList;
+import com.ckc.cws.mapper.CarlocksMapper;
+import com.ckc.cws.mapper.ParksMapper;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by geely on 2015/11/22.
@@ -184,32 +189,55 @@ public class TestController {
     public String converter(Boolean bool){
         return bool.toString();
     }
-
     
+    @Resource
+    ParksMapper parksMapper;
+    @RequestMapping("insertParks")
+	public @ResponseBody String insertParks(Parks parks,locksList locks){
+    	parksMapper.insertSelective(parks);
+    	
+		return "";
+	}
+    @Resource
+    CarlocksMapper lockMapper;
+    @RequestMapping("insertLocks")
+    public @ResponseBody locksList insertLocks(locksList locks){
+    	List<Carlocks> locks2 = locks.getCarlocks();
+    	for (Carlocks lock : locks2) {
+    		lockMapper.insertSelective(lock);
+    	}
+		return locks;
+	}
+    
+    @RequestMapping("toInsert")
+	public String toInsert(){
+		return "testInsert";
+	}
+    /*
     @RequestMapping("getUserById")
 	public @ResponseBody Users getUser(
 				@RequestParam Integer id
 			){
 		return usersMapper.selectByPrimaryKey(id);
 	}
-	/*
+	
 	 * 参数param1 的值必须等于value1 ，参数param2 必须存在，值无所谓，参数param3 必须不存在，
 	 * 只有当请求/user/getUser.do,并且满足指定的三个参数条件的时候才能访问到该方法。
-	 */
+	 
 	@RequestMapping(value="ajaxUserRegister",method=RequestMethod.POST,params={"param1=value1","param2","!param3"})
 	public @ResponseBody String getUser(
 				@ModelAttribute Users user
 			){
 		return "insert success:"+usersMapper.insert(user);
 	}
-	/*
+	
 	 * 只有当请求头包含Accept 信息，且请求的 host 为 localhost 的时候才能正确的访问到testHeaders 方法
-	 */
+	 
 	@RequestMapping(value="toUserRegister", headers={"host=localhost", "Accept"})
 	public String insertUser(
 				HttpServletRequest req
 			){
 		return "userRegister";
-	}
+	}*/
 	
 }
