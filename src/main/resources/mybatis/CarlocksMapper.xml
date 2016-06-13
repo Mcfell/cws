@@ -20,6 +20,13 @@
     from carlocks
     where S_ID = #{sId,jdbcType=INTEGER}
   </select>
+  <!-- 根据停车场ID获取该停车场的停车位信息 -->
+  <select id="selectByParksId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from carlocks
+    where P_ID = #{pId,jdbcType=INTEGER} and IS_RENT= 1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from carlocks
     where S_ID = #{sId,jdbcType=INTEGER}
@@ -32,6 +39,34 @@
       #{isRent,jdbcType=BIT}, #{useStat,jdbcType=BIT}, #{faultStat,jdbcType=TINYINT}, 
       #{blueId,jdbcType=VARCHAR}, #{bulePwd,jdbcType=VARCHAR})
   </insert>
+  <!-- 根据车位锁ID，写入车位锁验证码(数据库里叫蓝牙密码) -->
+  <update id="updateLockAuth" parameterType="com.ckc.cws.bean.Carlocks" >
+    update carlocks
+    <set >
+      <if test="uId != null" >
+        U_ID = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        P_ID = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="isRent != null" >
+        IS_RENT = #{isRent,jdbcType=BIT},
+      </if>
+      <if test="useStat != null" >
+        USE_STAT = #{useStat,jdbcType=BIT},
+      </if>
+      <if test="faultStat != null" >
+        FAULT_STAT = #{faultStat,jdbcType=TINYINT},
+      </if>
+      <if test="blueId != null" >
+        BLUE_ID = #{blueId,jdbcType=VARCHAR},
+      </if>
+      <if test="bulePwd != null" >
+        BULE_PWD = #{bulePwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where S_ID = #{sId,jdbcType=INTEGER}
+  </update>
   <insert id="insertSelective" parameterType="com.ckc.cws.bean.Carlocks" >
     insert into carlocks
     <trim prefix="(" suffix=")" suffixOverrides="," >

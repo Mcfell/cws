@@ -14,4 +14,11 @@ public interface OrdersMapper {
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);
+    
+    //生成订单
+    int generateOrders(Orders Orders);
+    //未完成订单号查询
+    String selectUnfinishedOrders(String uId);
+  //完成未支付订单号查询
+    String selectfinishedUnpayOrders(String uId);
 }

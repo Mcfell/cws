@@ -86,5 +86,25 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
     
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!-- <aop:config>
+      <aop:pointcut id="businessService"
+                 expression="execution(* com.ckc.cws.service.*.*.*.*(..))"/>
+      <aop:advisor advice-ref="txAdvice" pointcut-ref="businessService"/>
+   </aop:config> -->
+ 
+   <!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+      the transactional semantics...
+      <tx:attributes>
+         all methods starting with '*' are read-only
+         <tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+         other methods use the default transaction settings (see below)
+         <tx:method name="add*" propagation="REQUIRED"/>
+         <tx:method name="save*" propagation="REQUIRED"/>
+         <tx:method name="update*" propagation="REQUIRED"/>
+         <tx:method name="delete*" propagation="REQUIRED"/>
+         <tx:method name="create*" propagation="REQUIRED"/>
+      </tx:attributes>
+   </tx:advice>
+    -->
+   <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

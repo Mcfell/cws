@@ -3,16 +3,19 @@ package com.ckc.cws.util;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cloopen.rest.sdk.CCPRestSmsSDK;
 
 public class SmsUtil{
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(SmsUtil.class);
 	/**
 	 * @param args
 	 */
-	public static void sendSMS(String phone,String content,String AppId){
+	public static boolean sendSMS(String phone,String content,String AppId){
 		HashMap<String, Object> result = null;
-
+		boolean isSend = false;
 		//初始化SDK
 		CCPRestSmsSDK restAPI = new CCPRestSmsSDK();
 		
@@ -55,19 +58,22 @@ public class SmsUtil{
 		//*********************************************************************************************************************
 		result = restAPI.sendTemplateSMS(phone,AppId ,new String[]{content,"2"});
 		
-		System.out.println("SDKTestGetSubAccounts result=" + result);
+		LOGGER.debug("SDKTestGetSubAccounts result= {}" , result);
 		if("000000".equals(result.get("statusCode"))){
 			//正常返回输出data包体信息（map）
+			@SuppressWarnings("unchecked")
 			HashMap<String,Object> data = (HashMap<String, Object>) result.get("data");
 			Set<String> keySet = data.keySet();
 			for(String key:keySet){
 				Object object = data.get(key);
-				System.out.println(key +" = "+object);
+				LOGGER.debug(key +" = "+object);
 			}
-			
+			isSend = true;
+			return isSend;
 		}else{
 			//异常返回输出错误码和错误信息
-			System.out.println("错误码=" + result.get("statusCode") +" 错误信息= "+result.get("statusMsg"));
+			LOGGER.debug("错误码=" + result.get("statusCode") +" 错误信息= "+result.get("statusMsg"));
+			return isSend;
 		}
 	}
 }

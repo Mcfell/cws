@@ -1,5 +1,7 @@
 package com.ckc.cws.mapper;
 
+import java.util.List;
+
 import com.ckc.cws.bean.Parks;
 
 public interface ParksMapper {
@@ -14,4 +16,6 @@ public interface ParksMapper {
     int updateByPrimaryKeySelective(Parks record);
 
     int updateByPrimaryKey(Parks record);
+    
+    List<Parks> selectAll();
 }

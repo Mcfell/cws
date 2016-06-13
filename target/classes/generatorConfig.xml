@@ -31,15 +31,16 @@
 			2.由于该插件生成的TeacherMapper.java, TeacherMapper.xml会带有example, 不希望生成example
 			3.数据库中的字段写有注释, 希望注释能自动生成在Teacher.java中 -->
 			
-        <table schema="carlocks" tableName="carlocks" enableCountByExample="false"
+        <!-- <table schema="carlocks" tableName="carlocks" enableCountByExample="false"
 		enableUpdateByExample="false" enableDeleteByExample="false"
 		enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<!-- 
+		</table> -->
+		 
 		<table schema="parks" tableName="parks" enableCountByExample="false"
 		enableUpdateByExample="false" enableDeleteByExample="false"
 		enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
+		<!-- 
 		<table tableName="orders" enableCountByExample="false"
 		enableUpdateByExample="false" enableDeleteByExample="false"
 		enableSelectByExample="false" selectByExampleQueryId="false">

@@ -11,12 +11,11 @@
   <sql id="Base_Column_List" >
     ID, O_ID, U_ID, P_ID, S_ID
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ckc.cws.bean.OrdersAssociatedKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from orders_associated
-    where ID = #{id,jdbcType=INTEGER}
-      and O_ID = #{oId,jdbcType=VARCHAR}
+    where  O_ID = #{oId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.ckc.cws.bean.OrdersAssociatedKey" >
     delete from orders_associated

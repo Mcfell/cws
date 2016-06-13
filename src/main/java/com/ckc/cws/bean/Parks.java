@@ -13,7 +13,9 @@ public class Parks {
 
     private String city;
 
-    private String area;
+    private Integer area;
+
+    private String addr;
 
     private Float dayPrice;
 
@@ -67,12 +69,20 @@ public class Parks {
         this.city = city == null ? null : city.trim();
     }
 
-    public String getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
+    public void setArea(Integer area) {
+        this.area = area;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr == null ? null : addr.trim();
     }
 
     public Float getDayPrice() {

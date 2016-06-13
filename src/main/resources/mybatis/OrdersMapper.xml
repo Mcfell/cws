@@ -15,11 +15,75 @@
     O_ID, START_TIME, END_TIME, TOTAL_DAY_TIME, TOTAL_NIGHT_TIME, TOTAL_COST, DISCOUNT, 
     STAT
   </sql>
+  <!-- 生成订单generateOrders -->
+  <insert id="generateOrders" parameterType="com.ckc.cws.bean.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oId != null" >
+        O_ID,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="totalDayTime != null" >
+        TOTAL_DAY_TIME,
+      </if>
+      <if test="totalNightTime != null" >
+        TOTAL_NIGHT_TIME,
+      </if>
+      <if test="totalCost != null" >
+        TOTAL_COST,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="stat != null" >
+        STAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oId != null" >
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalDayTime != null" >
+        #{totalDayTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalNightTime != null" >
+        #{totalNightTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalCost != null" >
+        #{totalCost,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=REAL},
+      </if>
+      <if test="stat != null" >
+        #{stat,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from orders
     where O_ID = #{oId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectUnfinishedOrders" resultType="java.lang.String" parameterType="java.lang.String" >
+   SELECT orders.O_ID FROM orders WHERE orders.STAT=0 AND orders.O_ID IN (SELECT orders_associated.O_ID FROM orders_associated where orders_associated.U_ID=#{0})
+
+  </select>
+  <select id="selectfinishedUnpayOrders" resultType="java.lang.String" parameterType="java.lang.String" >
+   SELECT orders.O_ID FROM orders WHERE orders.STAT=1 AND orders.O_ID IN (SELECT orders_associated.O_ID FROM orders_associated where orders_associated.U_ID=#{0})
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from orders

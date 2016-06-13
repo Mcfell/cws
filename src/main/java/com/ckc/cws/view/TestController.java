@@ -15,6 +15,7 @@ import com.ckc.cws.entity.UserSetForm;
 import com.ckc.cws.entity.locksList;
 import com.ckc.cws.mapper.CarlocksMapper;
 import com.ckc.cws.mapper.ParksMapper;
+import com.ckc.cws.mapper.UsersMapper;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -208,10 +209,16 @@ public class TestController {
     	}
 		return locks;
 	}
-    
+   
     @RequestMapping("toInsert")
 	public String toInsert(){
 		return "testInsert";
+	}
+    @Resource
+    UsersMapper usersMapper;
+    @RequestMapping("testListResult")
+    public @ResponseBody List<Users> selectAllUsers(){
+		return usersMapper.selectAll();
 	}
     /*
     @RequestMapping("getUserById")

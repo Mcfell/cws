@@ -23,15 +23,24 @@
   <sql id="Base_Column_List_WithOutPwd" >
 	U_ID, U_NAME, PHONE, CITY, PIC, WEIXIN_ID, WEIBO_ID, ZHIFUBAO_ID, CAR_ID, LEVEL,REG_TIME, LASTLOGIN_TIME 
   </sql>
-  
+  <select id="selectUidByPhone" resultType="Integer" parameterType="java.lang.String" >
+    select U_ID
+    from users
+    where PHONE = #{phone}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from users
     where U_ID = #{uId}
   </select>
-  <select id="selectByPhone" resultType="int" parameterType="java.lang.String" >
-    select count(*) from users where PHONE = #{phone,jdbcType=VARCHAR}
+  <select id="selectAll" resultType="Users">
+    select <include refid="Base_Column_List_WithOutPwd" /> from users
+  </select>
+  <select id="selectByPhone" resultType="Integer" parameterType="java.lang.String" >
+    select IFNULL(U_ID,0) 
+    from users 
+    where PHONE = #{phone,jdbcType=VARCHAR}
   </select>
   <select id="selectByPhoneAndPwd" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select <include refid="Base_Column_List_WithOutPwd" /> from users where PHONE = #{phone,jdbcType=VARCHAR} and PWD = #{pwd}
@@ -139,7 +148,7 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ckc.cws.bean.Users" >
     update users
-    <set >
+    <set>
       <if test="uName != null" >
         U_NAME = #{uName,jdbcType=VARCHAR},
       </if>

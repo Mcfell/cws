@@ -25,4 +25,5 @@ public class FinalValue
 		public static final	int PHONE_HASREGISGER = 101;//手机已经被注册
 		public static final	int PHONE_ERROR = 102;	//手机验证失败
 		public static final	int PWD_ERROR = 103;	//密码验证失败
+		public static final int VCODE_ERROR = 104;//验证码校验失败
 }
